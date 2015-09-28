@@ -1,9 +1,18 @@
 <?php
     //loome AB ühenduse
+    /*  
+        // config_global.php
+        $servername = "";
+        $server_username = "";
+        $server_password = "";
+    
+    */
     require_once("config_global.php");
     $database = "if15_romil_1";
-    //paneme sessiooni serveris toole, saame kasutada SESSION[]
-	session_start();
+    
+    //paneme sessiooni serveris tööle, saaame kasutada SESSION[]
+    session_start();
+    
     
     function logInUser($email, $hash){
         
@@ -16,13 +25,14 @@
         $stmt->execute();
         if($stmt->fetch()){
             echo "Kasutaja logis sisse id=".$id_from_db;
-			//sessioon, salvestatakse serveris
-			$_SESSION["logged_in_user_id"] = $id_from_db;
-			$_SESSION["logged_in_user_email"] = $email_from_db;
-			
-			//suuname kasutaja teisele lehele
-			header("Location: data.php");
-			
+            
+            // sessioon, salvestatakse serveris
+            $_SESSION['logged_in_user_id'] = $id_from_db;
+            $_SESSION['logged_in_user_email'] = $email_from_db;
+            
+            //suuname kasutaja teisele lehel
+            header("Location: data.php");
+            
         }else{
             echo "Wrong credentials!";
         }
@@ -44,4 +54,12 @@
         $mysqli->close();
         
     }
+    
+    function createCarPlate() {
+        
+        
+        
+    }
+    
+    
  ?>
